@@ -58,90 +58,60 @@ graph TD
 
 ### ⚡ Installation
 
-1. **Clone the repository:**
+1. **Clone Repository**
    ```bash
-   git clone <repository-url>
-   cd nexgAI-medical-chatbot
+   git clone https://github.com/smit-faldu/Medical-Chatbot.git
+   cd Medical-Chatbot
    ```
 
-2. **Install dependencies:**
+2. **Create Virtual Environment**
+   ```bash
+   python -m venv venv
+   # Activate: venv\Scripts\activate (Windows) or source venv/bin/activate (macOS/Linux)
+   ```
+
+3. **Install Requirements**
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Set up environment variables:**
-   Create a `.env` file:
+4. **Set Environment Variables**
+   Create `.env` file:
    ```env
    GOOGLE_API_KEY=your_google_api_key_here
    PINECONE_API_KEY=your_pinecone_api_key_here
    PINECONE_INDEX_NAME=medmcqa-embeddings
    PINECONE_ENVIRONMENT=us-east-1-aws
-   PINECONE_MODEL=all-MiniLM-L6-v2
    ```
 
-### 🗄️ Database Setup (MedMCQA Embeddings)
+5. **Run Notebook for Embeddings**
+   ```bash
+   jupyter notebook pineconeembd.ipynb
+   ```
+   Or use Google Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1-0CZm0M_my8GOYDoYFB6xDMQi2wUBHx3#scrollTo=greE9fAEykFa)
 
-You need to create and populate your Pinecone index with MedMCQA embeddings:
+6. **Run Server**
+   ```bash
+   python main.py
+   ```
 
-#### Option 1: Local Setup (if CUDA available)
-```bash
-# Run the embedding notebook locally
-jupyter notebook pineconeembd.ipynb
-```
-
-#### Option 2: Google Colab (Recommended)
-Use our pre-configured Colab notebook:
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1-0CZm0M_my8GOYDoYFB6xDMQi2wUBHx3#scrollTo=greE9fAEykFa)
-
-**Steps in Colab:**
-1. Open the Colab link above
-2. Add your Pinecone API key to the notebook
-3. Run all cells to download MedMCQA and create embeddings
-4. The notebook will create your `medmcqa-embeddings` index
-5. Wait for ~182K vectors to be uploaded (takes 15-30 minutes)
-
-### 🧪 Test Your Setup
-
-```bash
-# Run comprehensive system test
-python test_system.py
-```
-
-Expected output:
-```
-✅ PASS Environment Variables
-✅ PASS Package Imports  
-✅ PASS Medical Embedder
-✅ PASS Pinecone Connection (182,822 vectors)
-✅ PASS Google Gemini LLM
-✅ PASS Chat Flow
-✅ PASS API Components
-
-🎉 7/7 tests passed - System ready!
-```
-
-### 🎬 Launch the Chatbot
-
-```bash
-# Quick start (recommended)
-python start.py
-
-# Or use main script
-python main.py
-```
-
-## 🌐 Access Points
+## 🌐 Access Your Chatbot
 
 Once running, access your chatbot at:
 
-| Interface | URL | Description |
-|-----------|-----|-------------|
-| 🏠 **Main** | http://127.0.0.1:8000 | Redirects to chat UI |
-| 💬 **Chat UI** | http://127.0.0.1:8000/ui | Interactive web interface |
-| 📚 **API Docs** | http://127.0.0.1:8000/docs | Swagger documentation |
-| ❤️ **Health** | http://127.0.0.1:8000/health | System health check |
-| 📊 **Stats** | http://127.0.0.1:8000/stats | Database statistics |
+- **💬 Chat Interface**: http://127.0.0.1:7860/ui
+- **📚 API Documentation**: http://127.0.0.1:7860/docs
+- **❤️ Health Check**: http://127.0.0.1:7860/health
+
+## 🧪 Sample Questions
+
+Try these medical questions:
+
+- "What is hypertension and what causes it?"
+- "What are the symptoms of diabetes mellitus?"
+- "How does aspirin work as an antiplatelet agent?"
+- "What is the difference between Type 1 and Type 2 diabetes?"
+- "What are the side effects of ACE inhibitors?"
 
 ## 🎨 Design Choices & Justification
 
